@@ -4,6 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
+import mplcyberpunk
 
 # ______________________________________________________________________________________________________________________
 # I. CREATE EVENTS PANDAS DATAFRAME
@@ -291,152 +292,195 @@ def get_info(player_id):
 
     if int(df_players["element_type"].loc[df_players["id"] == player_id]) == [1, 2]:
         fig, ax = plt.subplots(nrows=11, ncols=1, figsize=(20, 35))
+        fig.tight_layout()
 
         # MINUTES PLAYED
         ax[0].set_title("Minutes played")
         ax[0].set_ylabel("Minutes")
+        ax[0].set_xlabel("Gameweek")
         ax[0] = sns.lineplot(
             data=df_stats, x=df_stats.index, y=df_stats["minutes"], ax=ax[0]
         )
+        ax[0].set(xticks=np.arange(min(df_stats.index), max(df_stats.index) + 1))
 
         # POINTS PER GAMEWEEK
         ax[1].set_title("Total points")
         ax[1].set_ylabel("Points")
+        ax[1].set_xlabel("Gameweek")
         ax[1] = sns.lineplot(
             data=df_stats, x=df_stats.index, y=df_stats["total_points"], ax=ax[1]
         )
+        ax[1].set(xticks=np.arange(min(df_stats.index), max(df_stats.index) + 1))
 
         # CLEAN SHEETS
         ax[2].set_title("Clean sheets")
         ax[2].set_ylabel("Clean sheets")
+        ax[2].set_xlabel("Gameweek")
         ax[2] = sns.lineplot(
             data=df_stats, x=df_stats.index, y=df_stats["clean_sheets"], ax=ax[2]
         )
+        ax[2].set(xticks=np.arange(min(df_stats.index), max(df_stats.index) + 1))
 
         # GOALS SCORED
         ax[3].set_title("Goals scored")
         ax[3].set_ylabel("Goals")
+        ax[3].set_xlabel("Gameweek")
         ax[3] = sns.lineplot(
             data=df_stats, x=df_stats.index, y=df_stats["goals_scored"], ax=ax[3]
         )
+        ax[3].set(xticks=np.arange(min(df_stats.index), max(df_stats.index) + 1))
 
         # ASSISTS
         ax[4].set_title("Assists")
         ax[4].set_ylabel("Assists")
+        ax[4].set_xlabel("Gameweek")
         ax[4] = sns.lineplot(
             data=df_stats, x=df_stats.index, y=df_stats["assists"], ax=ax[4]
         )
+        ax[4].set(xticks=np.arange(min(df_stats.index), max(df_stats.index) + 1))
 
         # EXPECTED GOALS CONCEDED
         ax[5].set_title("Expected goals conceded")
         ax[5].set_ylabel("xGC")
+        ax[5].set_xlabel("Gameweek")
         ax[5] = sns.lineplot(
             data=df_stats,
             x=df_stats.index,
             y=df_stats["expected_goals_conceded"],
             ax=ax[5],
         )
+        ax[5].set(xticks=np.arange(min(df_stats.index), max(df_stats.index) + 1))
 
         # EXPECTED GOALS
         ax[6].set_title("Expected goals")
         ax[6].set_ylabel("xG")
+        ax[6].set_xlabel("Gameweek")
         ax[6] = sns.lineplot(
             data=df_stats, x=df_stats.index, y=df_stats["expected_goals"], ax=ax[6]
         )
+        ax[6].set(xticks=np.arange(min(df_stats.index), max(df_stats.index) + 1))
 
         # EXPECTED ASSISTS
         ax[7].set_title("Expected assists")
         ax[7].set_ylabel("xA")
+        ax[7].set_xlabel("Gameweek")
         ax[7] = sns.lineplot(
             data=df_stats, x=df_stats.index, y=df_stats["expected_assists"], ax=ax[7]
         )
+        ax[7].set(xticks=np.arange(min(df_stats.index), max(df_stats.index) + 1))
 
         # VALUE
         ax[8].set_title("Value in time")
         ax[8].set_ylabel("Value")
+        ax[8].set_xlabel("Gameweek")
         ax[8] = sns.lineplot(
             data=df_stats, x=df_stats.index, y=df_stats["value"], ax=ax[8]
         )
+        ax[8].set(xticks=np.arange(min(df_stats.index), max(df_stats.index) + 1))
 
         # TRANSFERS IN
         ax[9].set_title("No. of transfers in")
         ax[9].set_ylabel("Transfers")
+        ax[9].set_xlabel("Gameweek")
         ax[9] = sns.lineplot(
             data=df_stats, x=df_stats.index, y=df_stats["transfers_in"], ax=ax[9]
         )
+        ax[9].set(xticks=np.arange(min(df_stats.index), max(df_stats.index) + 1))
 
         # TRANSFERS OUT
         ax[10].set_title("No. of transfers out")
         ax[10].set_ylabel("Transfers")
+        ax[10].set_xlabel("Gameweek")
         ax[10] = sns.lineplot(
             data=df_stats, x=df_stats.index, y=df_stats["transfers_out"], ax=ax[10]
         )
+        ax[10].set(xticks=np.arange(min(df_stats.index), max(df_stats.index) + 1))
 
     else:
-        fig, ax = plt.subplots(nrows=9, ncols=1, figsize=(20, 35))
+        fig, ax = plt.subplots(
+            nrows=9, ncols=1, figsize=(20, 35), constrained_layout=True
+        )
 
         # MINUTES PLAYED
         ax[0].set_title("Minutes played")
         ax[0].set_ylabel("Minutes")
+        ax[0].set_xlabel("Gameweek")
         ax[0] = sns.lineplot(
             data=df_stats, x=df_stats.index, y=df_stats["minutes"], ax=ax[0]
         )
+        ax[0].set(xticks=np.arange(min(df_stats.index), max(df_stats.index) + 1))
 
         # POINTS PER GAMEWEEK
         ax[1].set_title("Total points")
         ax[1].set_ylabel("Points")
+        ax[1].set_xlabel("Gameweek")
         ax[1] = sns.lineplot(
             data=df_stats, x=df_stats.index, y=df_stats["total_points"], ax=ax[1]
         )
+        ax[1].set(xticks=np.arange(min(df_stats.index), max(df_stats.index) + 1))
 
         # GOALS SCORED
         ax[2].set_title("Goals scored")
         ax[2].set_ylabel("Goals")
+        ax[2].set_xlabel("Gameweek")
         ax[2] = sns.lineplot(
             data=df_stats, x=df_stats.index, y=df_stats["goals_scored"], ax=ax[2]
         )
+        ax[2].set(xticks=np.arange(min(df_stats.index), max(df_stats.index) + 1))
 
         # ASSISTS
         ax[3].set_title("Assists")
         ax[3].set_ylabel("Assists")
+        ax[3].set_xlabel("Gameweek")
         ax[3] = sns.lineplot(
             data=df_stats, x=df_stats.index, y=df_stats["assists"], ax=ax[3]
         )
+        ax[3].set(xticks=np.arange(min(df_stats.index), max(df_stats.index) + 1))
 
         # EXPECTED GOALS
         ax[4].set_title("Expected goals")
         ax[4].set_ylabel("xG")
+        ax[4].set_xlabel("Gameweek")
         ax[4] = sns.lineplot(
             data=df_stats, x=df_stats.index, y=df_stats["expected_goals"], ax=ax[4]
         )
+        ax[4].set(xticks=np.arange(min(df_stats.index), max(df_stats.index) + 1))
 
         # EXPECTED ASSISTS
         ax[5].set_title("Expected assists")
         ax[5].set_ylabel("xA")
+        ax[5].set_xlabel("Gameweek")
         ax[5] = sns.lineplot(
             data=df_stats, x=df_stats.index, y=df_stats["expected_assists"], ax=ax[5]
         )
+        ax[5].set(xticks=np.arange(min(df_stats.index), max(df_stats.index) + 1))
 
         # VALUE
         ax[6].set_title("Value in time")
         ax[6].set_ylabel("Value")
+        ax[6].set_xlabel("Gameweek")
         ax[6] = sns.lineplot(
             data=df_stats, x=df_stats.index, y=df_stats["value"], ax=ax[6]
         )
+        ax[6].set(xticks=np.arange(min(df_stats.index), max(df_stats.index) + 1))
 
         # TRANSFERS IN
         ax[7].set_title("No. of transfers in")
         ax[7].set_ylabel("Transfers")
+        ax[7].set_xlabel("Gameweek")
         ax[7] = sns.lineplot(
             data=df_stats, x=df_stats.index, y=df_stats["transfers_in"], ax=ax[7]
         )
+        ax[7].set(xticks=np.arange(min(df_stats.index), max(df_stats.index) + 1))
 
         # TRANSFERS OUT
         ax[8].set_title("No. of transfers out")
         ax[8].set_ylabel("Transfers")
+        ax[8].set_xlabel("Gameweek")
         ax[8] = sns.lineplot(
             data=df_stats, x=df_stats.index, y=df_stats["transfers_out"], ax=ax[8]
         )
+        ax[8].set(xticks=np.arange(min(df_stats.index), max(df_stats.index) + 1))
 
     return df_players["second_name"].loc[df_players["id"] == player_id]
 
@@ -520,34 +564,42 @@ def get_manager_info(manager_id):
 
     # Points per GW
     ax[0].set_title("Points per Gameweek")
-    ax[0].set_ylabel("Points in GW")
+    ax[0].set_ylabel("Points")
+    ax[0].set_xlabel("Gameweek")
     ax[0] = sns.lineplot(
         data=team_gw, x=team_gw.index, y=team_gw["entry_history.points"], ax=ax[0]
     )
+    ax[0].set(xticks=np.arange(min(team_gw.index), max(team_gw.index) + 1))
 
     # Total points in time
     ax[1].set_title("Total points in time")
     ax[1].set_ylabel("Points")
+    ax[1].set_xlabel("Gameweek")
     ax[1] = sns.lineplot(
         data=team_gw, x=team_gw.index, y=team_gw["entry_history.total_points"], ax=ax[1]
     )
+    ax[1].set(xticks=np.arange(min(team_gw.index), max(team_gw.index) + 1))
 
     # Rank per GW
     ax[2].set_title("Gameweek rank")
     ax[2].set_ylabel("Rank")
+    ax[2].set_xlabel("Gameweek")
     ax[2] = sns.lineplot(
         data=team_gw, x=team_gw.index, y=-team_gw["entry_history.rank_sort"], ax=ax[2]
     )
+    ax[2].set(xticks=np.arange(min(team_gw.index), max(team_gw.index) + 1))
 
     # Overall rank in time
     ax[3].set_title("Rank")
     ax[3].set_ylabel("Rank")
+    ax[3].set_xlabel("Gameweek")
     ax[3] = sns.lineplot(
         data=team_gw,
         x=team_gw.index,
         y=-team_gw["entry_history.overall_rank"],
         ax=ax[3],
     )
+    ax[3].set(xticks=np.arange(min(team_gw.index), max(team_gw.index) + 1))
 
 
 # _______________________________________________________________________________________________________________________
