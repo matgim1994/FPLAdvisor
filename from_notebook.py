@@ -221,7 +221,7 @@ df_forwards.index = np.arange(1, len(df_forwards) + 1)
 df_forwards
 # _______________________________________________________________________________________________________________________
 
-# CREATE TEAMS PANDAS DATAFRAME
+# IV. CREATE TEAMS PANDAS DATAFRAME
 teams = api_result['teams']
 df_teams = pd.json_normalize(teams)
 
@@ -250,7 +250,7 @@ df_teams
 #_______________________________________________________________________________________________________________________
 
 #_______________________________________________________________________________________________________________________
-#GET INFO ON CHOSEN PLAYER PERFROMANCE
+# V. GET INFO ON CHOSEN PLAYER PERFROMANCE
 
 def get_info(player_id):
     url_player = f'https://fantasy.premierleague.com/api/element-summary/{player_id}/'
@@ -374,7 +374,7 @@ def get_info(player_id):
 
 #_______________________________________________________________________________________________________________________
 
-#GET INFO ON CHOSEN MANAGER
+# VI. GET INFO ON CHOSEN MANAGER PERFORMANCE
 def get_manager_info(manager_id):
     url_manager = f'https://fantasy.premierleague.com/api/entry/{manager_id}/'
     api_result_manager = requests.get(url_manager).json()
@@ -412,7 +412,8 @@ def get_manager_info(manager_id):
         team_new_gw = team_new_gw[team_gw_columns]
         team_gw = pd.concat([team_gw, team_new_gw], join='inner', axis=0)
 
-    team_gw.index = np.arange(1, len(df_stats) + 1)
+    team_gw.index = np.arange(1, len(team_gw) + 1)
+
 
     # CHARTS
     fig, ax = plt.subplots(nrows=4, ncols=1, figsize=(20, 35))
@@ -439,7 +440,7 @@ def get_manager_info(manager_id):
 #_______________________________________________________________________________________________________________________
 
 #_______________________________________________________________________________________________________________________
-# GET INFO ON CHOSEN MANAGER'S TEAM ON CHOSEN GAMEWEEK
+# VII. GET INFO ON CHOSEN MANAGER'S TEAM ON CHOSEN GAMEWEEK
 def manager_team_gw(manager_id, gameweek):
     url = f'https://fantasy.premierleague.com/api/entry/{manager_id}/event/{gameweek}/picks/'
     api_result_team_gw = requests.get(url).json()
