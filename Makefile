@@ -8,7 +8,7 @@ jupyter:
 	docker exec -it fpl python3 -m jupyterlab --ip=0.0.0.0 --allow-root --port 8889 --no-browser
 
 test:
-	pass
+	docker exec -it fpl python3 manage.py test
 
 remove_dangling:
 	docker image prune
