@@ -17,5 +17,9 @@ To build the image, you can run `make build` in the terminal.
 To run the app, you can run `make run` in the terminal.
 Then, navigate to `http://localhost:8000/` in your web browser.
 
+### Run JupyterLab
+To run JupyterLab, you can run `make jupyter` in the terminal.
+Then, navigate to `http://localhost:8889/` in your web browser (if prompted for a token, copy and paste the token from the terminal into the web page).
+
 ### Run the tests
 To run the tests, you can run `make test` in the terminal.
