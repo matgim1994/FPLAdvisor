@@ -17,8 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from fpl.views import HomeView
+from fpl.views import OverallStatus
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello/', HomeView.as_view(), name = 'home')
+    path('hello/', HomeView.as_view(), name = 'home'),
+    path('overall/', OverallStatus.as_view(), name = 'overall')
 ]
