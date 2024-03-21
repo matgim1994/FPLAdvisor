@@ -12,3 +12,6 @@ class OverallStatistics(models.Model):
     gameweek = models.CharField(max_length=30)
     average_score = models.IntegerField()
     transfers_made = models.IntegerField()
+
+    def __str__(self):
+        return str(self.gameweek)

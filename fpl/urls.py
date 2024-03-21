@@ -17,10 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from fpl.views import HomeView
-from fpl.views import OverallStatus
+from fpl.views import OverallStatisticsView
+from fpl.views import plot
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/', HomeView.as_view(), name = 'home'),
-    path('overall/', OverallStatus.as_view(), name = 'overall')
+    path('overall/', OverallStatisticsView.as_view(), name = 'overall'),
+    path('plot/', plot, name = 'plot')
 ]
