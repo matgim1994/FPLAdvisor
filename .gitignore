@@ -159,6 +159,8 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 .idea/
 
+.Trash-0/
+
 # Jupyter notebooks but only templates
 *.ipynb
 !*_template.ipynb
