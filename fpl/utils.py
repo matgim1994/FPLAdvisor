@@ -1,6 +1,7 @@
-import matplotlib.pyplot as plt
 import base64
 from io import BytesIO
+import matplotlib_inline
+
 
 def get_graph():
     buffer = BytesIO()
