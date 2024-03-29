@@ -23,10 +23,10 @@ test:
 	docker exec -it fpl python3 manage.py test
 
 dumpdata:
-	docker exec -it fpl python manage.py dumpdata fpl --indent 4 > fixtures/fpl.json
+	docker exec -it fpl python manage.py dumpdata fpl --indent 4 > fpl/fixtures/fpl.json
 
 loaddata:
-	docker exec -it fpl python manage.py loaddata fixtures/fpl.json
+	docker exec -it fpl python manage.py loaddata fpl/fixtures/fpl.json
 
 remove_dangling:
 	docker image prune
