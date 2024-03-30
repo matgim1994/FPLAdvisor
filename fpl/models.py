@@ -21,9 +21,9 @@ class Event(models.Model):
 
 
 class Fixture(models.Model):
-    fixture_id = models.IntegerField()
-    team_h = models.IntegerField()
-    team_a = models.IntegerField()
+    fpl_id = models.IntegerField()
+    team_h = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team_h')
+    team_a = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team_a')
     team_h_difficulty = models.IntegerField(null=True)
     team_a_difficulty = models.IntegerField(null=True)
     team_h_score = models.IntegerField(null=True)
@@ -96,8 +96,8 @@ class Player(models.Model):
 
 
 class PointsInFixture(models.Model):
-    player = models.IntegerField()
-    fixture = models.IntegerField()
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
+    fixture = models.ForeignKey(Fixture, on_delete=models.CASCADE)
     predicted_points = models.IntegerField()
     actual_points = models.IntegerField()
 
