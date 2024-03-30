@@ -98,8 +98,8 @@ class Player(models.Model):
 class PointsInFixture(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
     fixture = models.ForeignKey(Fixture, on_delete=models.CASCADE)
-    predicted_points = models.FloatField()
-    actual_points = models.FloatField()
+    predicted_points = models.IntegerField()
+    actual_points = models.IntegerField()
 
     class Meta:
         unique_together = [["player", "fixture"]]
