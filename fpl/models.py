@@ -16,12 +16,12 @@ class Team(models.Model):
 
 
 class Event(models.Model):
-    fpl_id = models.IntegerField()
+    fpl_id = models.IntegerField(unique=True)
     name = models.CharField(max_length=255, unique=True)
 
 
 class Fixture(models.Model):
-    fpl_id = models.IntegerField()
+    fpl_id = models.IntegerField(unique=True)
     team_h = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team_h')
     team_a = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team_a')
     team_h_difficulty = models.IntegerField(null=True)
