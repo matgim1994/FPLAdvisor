@@ -15,12 +15,25 @@ class Team(models.Model):
     strength_defence_away = models.IntegerField()
 
 
+class Event(models.Model):
+    fpl_id = models.IntegerField()
+    name = models.CharField(max_length=255, unique=True)
+
+
+class Fixture(models.Model):
+    fpl_id = models.IntegerField()
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    team_h = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team_h')
+    team_a = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team_a')
+
+
 class Player(models.Model):
     second_name = models.CharField(max_length=255)
     first_name = models.CharField(max_length=255)
-    player_id = models.IntegerField(unique=True)
-    club = models.CharField(max_length=255)
-    element_type = models.CharField(max_length=30, choices=[(1, 'Goalkeeper'), (2, 'Defender'), (3, 'Midfielder'), (4, 'Forward')])
+    fpl_id = models.IntegerField(unique=True)
+    team = models.ForeignKey(to=Team, on_delete=models.CASCADE)
+    element_type = models.CharField(max_length=30,
+                                    choices=[(1, 'Goalkeeper'), (2, 'Defender'), (3, 'Midfielder'), (4, 'Forward')])
     total_points = models.IntegerField()
     points_per_game = models.FloatField()
     chance_of_playing_next_round = models.FloatField(null=True)
@@ -75,25 +88,29 @@ class Player(models.Model):
     starts_per_90 = models.FloatField()
     clean_sheets_per_90 = models.FloatField()
 
+    def __str__(self):
+        return f"{self.first_name} {self.second_name} ({self.id})"
 
-class Event(models.Model):
-    pass
 
+class PointsInFixture(models.Model):
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
+    fixture = models.ForeignKey(Fixture, on_delete=models.CASCADE)
+    predicted_points = models.FloatField()
+    actual_points = models.FloatField()
 
-class Fixture(models.Model):
-    fpl_id = models.IntegerField()
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
-    team_h = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team_h')
-    team_a = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team_a')
+    class Meta:
+        unique_together = [["player", "fixture"]]
 
 
 class FPLManager(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     fpl_manager_id = models.IntegerField()
-    players = models.ManyToManyField(Player)
+    players = models.ManyToManyField(Player, blank=True)
 
     def give_me_list_of_my_players(self):
         return [player for player in self.players.all()]
+
+    def __str__(self):
+        return str(self.fpl_manager_id)
 
 
 class OverallStatistics(models.Model):
