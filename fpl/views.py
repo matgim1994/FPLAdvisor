@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView, DetailView
 
-from fpl.models import OverallStatistics
+from fpl.models import OverallStatistics, Player
 from fpl.utils import get_plot
 
 
@@ -11,6 +11,16 @@ class HomeView(TemplateView):
 
 class OverallStatisticsView(TemplateView):
     template_name = "overall.html"
+
+
+class PlayersView(ListView):
+    model = Player
+    template_name = "players_list.html"
+
+
+class PlayerDetailView(DetailView):
+    model = Player
+    template_name = "player_detail.html"
 
 
 def plot(request):
