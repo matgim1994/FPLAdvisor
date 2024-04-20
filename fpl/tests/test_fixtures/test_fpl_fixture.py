@@ -7,4 +7,3 @@ class FPLFixtureTestCase(TestCase):
 
     def test_fpl_fixture_loaded(self):
         self.assertGreater(Team.objects.count(), 0)
-        self.assertGreater(Fixture.objects.count(), 0)

@@ -20,8 +20,7 @@ shell:
 	docker exec -it fpl /bin/bash
 
 test:
-	docker exec -it fpl python3 manage.py test
-	# to run a specific test run e.g. docker exec -it fpl python3 manage.py test fpl.tests.test_views
+	docker exec -it fpl python3 manage.py test 	# to run a specific test run e.g. docker exec -it fpl python3 manage.py test fpl.tests.test_views
 
 dumpdata:
 	docker exec -it fpl python manage.py dumpdata fpl --indent 4 > fpl/fixtures/fpl.json
