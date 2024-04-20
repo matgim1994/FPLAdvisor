@@ -15,6 +15,7 @@ class EventAdmin(admin.ModelAdmin):
         for event in queryset:
             for fixture in event.fixture_set.all():
                 for player in fixture.team_h.player_set.all() | fixture.team_a.player_set.all():
+                    # TODO: Dodaj prediction, jak na razie mamy hardcodowane 1.0.
                     PointsInFixture.objects.update_or_create(player=player, fixture=fixture,
                                                              defaults={'predicted_points': 1.0,
                                                                        'actual_points': 0.0})
