@@ -23,7 +23,7 @@ test:
 	docker exec -it fpl python3 manage.py test
 
 dumpdata:
-	docker exec -it fpl python manage.py dumpdata fpl --indent 4 > fpl/fixtures/fpl.json
+	makewpl/fixtures/fpl.json
 
 loaddata:
 	docker exec -it fpl python manage.py loaddata fpl/fixtures/fpl.json
