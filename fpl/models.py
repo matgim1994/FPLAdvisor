@@ -14,11 +14,16 @@ class Team(models.Model):
     strength_defence_home = models.IntegerField()
     strength_defence_away = models.IntegerField()
 
+    def __str__(self):
+        return self.name
+
 
 class Event(models.Model):
     fpl_id = models.IntegerField(unique=True)
     name = models.CharField(max_length=255, unique=True)
 
+    def __str__(self):
+        return self.name
 
 class Fixture(models.Model):
     fpl_id = models.IntegerField(unique=True)
@@ -28,6 +33,9 @@ class Fixture(models.Model):
     team_a_difficulty = models.IntegerField(null=True)
     team_h_score = models.IntegerField(null=True)
     team_a_score = models.IntegerField(null=True)
+
+    def __str__(self):
+        return f"{self.team_h} vs {self.team_a} ({self.id})"
 
 
 class Player(models.Model):

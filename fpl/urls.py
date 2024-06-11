@@ -18,11 +18,13 @@ from django.contrib import admin
 from django.urls import path
 from fpl.views import HomeView
 from fpl.views import OverallStatisticsView
-from fpl.views import plot
+from fpl.views import plot, PlayersView, PlayerDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='home'),
     path('overall/', OverallStatisticsView.as_view(), name='overall'),
-    path('plot/', plot, name='plot')
+    path('plot/', plot, name='plot'),
+    path('players/', PlayersView.as_view(), name='players'),
+    path('players/<int:pk>/', PlayerDetailView.as_view(), name='player_detail')
 ]

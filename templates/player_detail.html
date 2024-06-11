@@ -1,0 +1,8 @@
+{% extends "layouts/base.html" %}
+
+
+{% block content %}
+{{ object }}
+
+{{ object.first_name}} is predicted to score {{ object.pointsinfixture_set.last.predicted_points }} points.
+{% endblock content %}
